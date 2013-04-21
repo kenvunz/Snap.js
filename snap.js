@@ -179,8 +179,8 @@
                     cache.isDragging = true;
                     cache.hasIntent = null;
                     cache.intentChecked = false;
-                    cache.startDragX = utils.hasTouch ? e.touches[0].pageX : e.pageX;
-                    cache.startDragY = utils.hasTouch ? e.touches[0].pageY : e.pageY;
+                    cache.startDragX = utils.hasTouch && e.touches.length ? e.touches[0].pageX : e.pageX;
+                    cache.startDragY = utils.hasTouch && e.touches.length ? e.touches[0].pageY : e.pageY;
                     cache.dragWatchers = {
                         current: 0,
                         last: 0,
@@ -204,8 +204,8 @@
                 dragging: function(e) {
                     if (cache.isDragging) {
 
-                        var thePageX = utils.hasTouch ? e.touches[0].pageX : e.pageX,
-                            thePageY = utils.hasTouch ? e.touches[0].pageY : e.pageY,
+                        var thePageX = utils.hasTouch && e.touches.length ? e.touches[0].pageX : e.pageX,
+                            thePageY = utils.hasTouch && e.touches.length ? e.touches[0].pageY : e.pageY,
                             translated = cache.translation,
                             absoluteTranslation = action.translate.get.matrix(4),
                             whileDragX = thePageX - cache.startDragX,
@@ -352,7 +352,7 @@
                             }
                         }
                         cache.isDragging = false;
-                        cache.startDragX = utils.hasTouch ? e.touches[0].pageX : e.pageX;
+                        cache.startDragX = utils.hasTouch && e.touches.length ? e.touches[0].pageX : e.pageX;
                     }
                 }
             }
